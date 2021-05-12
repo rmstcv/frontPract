@@ -1,14 +1,15 @@
 function nouisSlider () {
     let slider = document.getElementById('slider');
-
+    let data = JSON.parse(slider.getAttribute("data-noislider"));
+    
     noUiSlider.create(slider, {
-        start: [0, 100],
+        start: [data.start, data.end],
         tooltips: [{to: function (value) {return 'от ' + Math.round(value) + ' $';}}, 
         {to: function (value) {return 'до ' + Math.round(value) + ' $';}}],
         connect: true,
         range: {
-            'min': 0,
-            'max': 100
+            'min': data.min,
+            'max': data.max
         },
                 
     });
@@ -24,7 +25,6 @@ function maxVal () {
     let max = Math.round(slider.noUiSlider.get()[1]);
     return (max);
 } 
-
 
 export {nouisSlider};
 export {minVal, maxVal};

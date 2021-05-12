@@ -5,8 +5,8 @@ let modalTrigger = document.querySelector(".modal__btn");
 function modalContent () {
     let min = minVal();
     let max = maxVal();
-    let coordX = document.querySelector(".activeCoords").getAttribute("data-PlacemarkX");
-    let coordY = document.querySelector(".activeCoords").getAttribute("data-PlacemarkY");
+    let coord = document.querySelector("[data-coords]").getAttribute("data-coords");
+    coord = JSON.parse(coord);
 
     return (`
     <div class="modal__content">
@@ -15,7 +15,7 @@ function modalContent () {
         <p>Минимум: <span>${min} $</span></p>
         <p>Максимум: <span>${max} $</span></p>
         <h3>Выбранная метка:</h3>
-        <p>Координаты: <span> ${coordX}, ${coordY}</span></p>
+        <p>Координаты: <span> ${coord.xActive}, ${coord.yActive}</span></p>
     </div>
     `);
 };

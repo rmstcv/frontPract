@@ -1,5 +1,6 @@
-function swiperSlider () {
-  const swiper = new Swiper('.swiper-container', {
+class Slider {
+ constructor (swiper) {
+  this.swiper = new Swiper(swiper, {
 
     allowTouchMove: false,
 
@@ -7,51 +8,35 @@ function swiperSlider () {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
+
   });
 
-  let prevSlide = document.querySelector(".swiper-button-prev");
-  let nextSlide = document.querySelector(".swiper-button-next");
-  let countSlider = document.querySelector(".slider__count span");
-  let totalSlider = document.querySelector(".slider__total span");
-  let numberOfSlides = document.querySelectorAll(".swiper-slide");
-  let count = 1;
+  this.countSlider = document.querySelector(".slider__count span");
+  this.totalSlider = document.querySelector(".slider__total span");
+ }
 
-  function totalCount() {
-    let total = numberOfSlides.length;
-    totalSlider.innerHTML =  addPrefix(total);
+ slideCounter () {
+    this.countSlider.innerHTML = this.addPrefix(this.swiper.activeIndex + 1);
   };
 
-  let slideCounterNext = () => {
-    
-    if (count < 3 ) {
-        count++;
-    } else {
-        count = 1;
-    }
-    countSlider.innerHTML = addPrefix(count);
-  };
-
-  let slideCounterPrev = () => {
-    
-    if (count > 1) {
-        count--;
-    } else {
-        count = 3;
-    }
-    countSlider.innerHTML = addPrefix(count);
-  };
-
-  function addPrefix (num) {
+  addPrefix (num) {
       if (num < 10) {
         num = '0' + num;
         return num;
       }
   }
 
-  nextSlide.addEventListener('click', slideCounterNext);
-  prevSlide.addEventListener('click', slideCounterPrev);
-  totalCount();
+  totalCount() {
+    this.totalSlider.innerHTML =  this.addPrefix(this.swiper.slides.length);
+  };
+
+  swiperInit () {
+     this.totalCount();
+     this.swiper.on('slideChange', () => {
+      this.slideCounter();
+    });
+  }  
 }
   
-export default swiperSlider;
+export default Slider;
 

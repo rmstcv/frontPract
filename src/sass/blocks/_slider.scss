@@ -1,38 +1,55 @@
 .slider {
-    height: 560px;
+    padding-bottom: 64px;
+    padding-top: 80px;
+    &__wrapper {
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+    }
     &__header {
-        margin-top: 80px;
         font-weight: bold;
         font-size: 40px;
-        line-height: 50px;
+        line-height: 3.1rem;
     }
     &__slides{
-        position: absolute;
         top: 140px;
         left: 753px;
     }
     &__count,
     &__total {
         font-size: 20px;
-        line-height: 28px;
+        line-height: 1.75rem;
         span {
             font-weight: bold;
             font-size: 24px;
-            line-height: 32px;
+            line-height: 2rem;
             color: $blue;
         }
     }
     &__total {
         margin-top: 12px;
     }
+    &__content-wrapper {
+        margin-left: 7vw;
+    }
+    &__btns {
+        display: flex;
+        width: 136px;
+        justify-content: space-between;
+        margin-top: 128px;
+    }
 }
 
 .swiper-container {
+    margin: 0;
     margin-top: 50px;
-    width: 615px;
-    height: 300px;
-    margin-left: 0;
-    position: inherit;
+    max-width: 615px;
+    max-height: 300px;
+}
+
+.swiper-slide img{
+    width: 100%;
+    height: auto;
 }
 
 .swiper-button-prev,
@@ -41,22 +58,12 @@
     height: 60px;
     border-radius: 50%;
     background-color: $blue;
-    margin-top: 0;
-    top: auto;
-    bottom: 0;
+    margin: 0;
+    position: inherit;
     &::after {
         content: none;
     }
     &:hover {
         background-color:#4F86CF;
     }
-}
-
-.swiper-button-prev {
-    margin-left: 753px;
-}
-
-.swiper-button-next {
-    left: 0;
-    margin-left: 839px;
 }
